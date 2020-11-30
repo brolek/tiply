@@ -13,11 +13,11 @@ repositories {
     mavenCentral()
 }
 android {
-    compileSdkVersion(29)
+    compileSdkVersion(AndroidSdk.compile)
     defaultConfig {
         applicationId = "com.rolekbartlomiej.tiply.androidApp"
-        minSdkVersion(24)
-        targetSdkVersion(29)
+        minSdkVersion(AndroidSdk.min)
+        targetSdkVersion(AndroidSdk.target)
         versionCode = 1
         versionName = "1.0"
     }
@@ -32,8 +32,8 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerVersion = "1.4.0"
-        kotlinCompilerExtensionVersion = "1.0.0-alpha07"
+        kotlinCompilerVersion = Versions.kotlin
+        kotlinCompilerExtensionVersion = Versions.compose
     }
 
     buildTypes {
@@ -70,15 +70,8 @@ tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
 dependencies {
     implementation(project(":shared"))
     implementation("com.google.android.material:material:1.2.1")
-    implementation("androidx.appcompat:appcompat:1.2.0")
+    implementation(Dependencies.appCompat)
     implementation("androidx.constraintlayout:constraintlayout:1.1.3")
 
-    val compose = "1.0.0-alpha07"
-    implementation("androidx.compose.ui:ui:$compose")
-    implementation("androidx.compose.ui:ui-graphics:$compose")
-    implementation("androidx.ui:ui-tooling:$compose")
-    implementation("androidx.compose.foundation:foundation-layout:$compose")
-    implementation("androidx.compose.material:material:$compose")
-    implementation("androidx.compose.runtime:runtime-livedata:$compose")
-    implementation("androidx.navigation:navigation-compose:1.0.0-alpha02")
+    composeDependencies()
 }
